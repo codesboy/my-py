@@ -1,0 +1,57 @@
+1.使用pip安装pipenv
+pip install pipenv
+
+2.创建项目目录
+mkdir test 
+cd test
+
+3.用pipenv给当前项目创建虚拟环境(虚拟环境起到和其他项目的隔离作用)
+pipenv install 
+或者 pipenv --python 3.7 指定某一Python版本创建环境
+
+
+4.pipenv --py
+pipenv --py 显示Python解释器信息
+
+5.配置pythonPath
+打开.vscode/settings.json文件
+如果没有这个文件，CTRL+shift+p -> Python:选择解析器，就会生成这个文件，
+然后修改settings.json中的内容：
+    "python.pythonPath": "C:/Users/admin/.virtualenvs/py-flask-ibapOX_0/Scripts/python.exe"
+C:/Users/admin/.virtualenvs/py-flask-ibapOX_0/Scripts/python.exe 就是第四步显示的结果
+保存重启vscode
+
+6.激活虚拟环境
+进行项目目录执行 pipenv shell 
+
+
+7.安装flask
+pipenv install flask
+
+8.查看虚拟环境中安装的包
+pip list
+可以用exit命令退出虚拟环境 退出后再用pip list查看包
+就能发现虚拟环境里的包和虚拟环境外的包不一样，这就是隔离的作用
+
+9.测试flask
+新建test.py文件：
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return 'Hello, Flask!'
+
+app.run()
+
+10.运行
+python test.py
+浏览器访问http://127.0.0.1:5000/
+
+其他pipenv命令
+pipenv --venv 显示虚拟环境信息
+pipenv graph 查看目前安装的库及其依赖
+pipenv check检查安全漏洞
+pipenv uninstall --all 卸载全部包并从Pipfile中移除
+pipenv install requests 安装相关模块并加入到Pipfile
+pipenv install django==1.11 安装固定版本模块并加入到Pipfile
